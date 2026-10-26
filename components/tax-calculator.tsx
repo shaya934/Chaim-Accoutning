@@ -300,7 +300,19 @@ export default function TaxCalculator({
             >
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={points}>
-                  <XAxis dataKey="name" tick={{ fontSize: 10 }} />
+                  <XAxis
+                    dataKey="name"
+                    tick={{ fontSize: 13 }}
+                    tickFormatter={(value) =>
+                      value === "Additional Medicare"
+                        ? "Addl. Med."
+                        : value === "Social Security"
+                          ? "Social Sec."
+                          : value === "After income tax"
+                            ? "After tax"
+                            : value
+                    }
+                  />
                   <YAxis width={65} />
                   <Tooltip formatter={(value) => currency(Number(value))} />
                   <Bar dataKey="value" fill="#a1af80" radius={[8, 8, 0, 0]} />

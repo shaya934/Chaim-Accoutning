@@ -72,7 +72,7 @@ export default function ContactForm({ available }: { available: boolean }) {
           <input name="website" tabIndex={-1} autoComplete="off" />
         </label>
       </div>
-      <p style={{ fontSize: 12 }}>
+      <p className="contact-privacy">
         Please don’t include Social Security numbers, tax documents, banking
         details, or other sensitive financial information. By submitting, you
         agree to our{" "}
