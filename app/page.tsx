@@ -89,8 +89,8 @@ export default async function Home() {
             </div>
             <div className="hero-picture">
               <img
-                src="/main-conversation.webp"
-                alt="Two people reviewing financial figures in a bright, welcoming workspace — illustrative imagery"
+                src="/hero-sunlit-meeting-space.webp"
+                alt="Illustrative sunlit meeting space with an oak table, soft upholstered chairs, and greenery"
                 fetchPriority="high"
               />
             </div>

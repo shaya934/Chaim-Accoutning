@@ -95,7 +95,7 @@ test("header phone replaces consultation, hero has no duplicate phone and floati
   await expect(page.locator(".contactfloat")).toHaveCount(0);
   await expect(page.locator(".hero-picture img")).toHaveAttribute(
     "src",
-    "/main-conversation.webp",
+    "/hero-sunlit-meeting-space.webp",
   );
 });
 test("all three tax tools recalculate and reset", async ({ page }) => {
