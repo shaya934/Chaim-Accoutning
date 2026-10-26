@@ -326,20 +326,33 @@ header {
   font-size: 16px;
   font-weight: 500;
 }
-.navlinks > a:not(.btn) {
+.navlinks > a:not(.header-phone) {
   padding-block: 10px;
   border-bottom: 1px solid transparent;
 }
-.navlinks > a:not(.btn):hover {
+.navlinks > a:not(.header-phone):hover {
   border-color: var(--copper);
 }
 .navlinks .header-phone {
+  display: inline-flex;
+  align-items: center;
+  color: var(--navy);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
   font-size: 16px;
+  font-weight: 600;
   white-space: nowrap;
-  padding: 15px 18px;
-  gap: 12px;
-  min-height: 49px;
+  padding: 12px 0;
+  gap: 10px;
+  min-height: 44px;
 }
+.header-phone:hover {
+  color: var(--copper);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
 .mobilemenu {
   display: none;
   border: 0;
@@ -1468,7 +1481,7 @@ footer {
   }
   .navlinks .header-phone {
     font-size: 15px;
-    padding: 14px;
+    padding: 12px 0;
   }
   .hero {
     gap: 35px;
@@ -1530,7 +1543,7 @@ footer {
   }
 }
 @media (max-width: 950px) {
-  .navlinks > a:not(.btn) {
+  .navlinks > a:not(.header-phone) {
     display: none;
   }
   .mobilemenu {
@@ -2130,7 +2143,7 @@ footer {
   }
   .navlinks .header-phone {
     font-size: 14px;
-    padding: 12px 10px;
+    padding: 12px 0;
     gap: 7px;
     min-height: 42px;
   }
@@ -2427,7 +2440,7 @@ p {
   }
   .navlinks .header-phone {
     font-size: 13px;
-    padding: 12px 10px;
+    padding: 12px 0;
     gap: 6px;
   }
   .mobilemenu summary {
@@ -2467,7 +2480,7 @@ p {
   }
   .navlinks .header-phone {
     font-size: 12px;
-    padding: 12px 8px;
+    padding: 12px 0;
   }
   .header-phone svg {
     display: none;

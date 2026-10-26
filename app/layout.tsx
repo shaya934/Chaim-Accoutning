@@ -54,7 +54,7 @@ export default async function Layout({
                   {t}
                 </Link>
               ))}
-              <a className="btn header-phone" href={`tel:${s.phone}`}>
+              <a className="header-phone" href={`tel:${s.phone}`}>
                 <Phone size={15} />
                 {s.phone}
               </a>
