@@ -6,7 +6,7 @@ import { services, calculators, faqs } from "@/lib/content";
 import { configured } from "@/lib/db";
 import ContactForm from "@/components/contact";
 import Articles from "@/components/articles";
-import { BookOpen, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 export const dynamic = "force-dynamic";
 const titles: Record<string, string> = {
   about: "Professional Accounting With a Personal Touch.",
@@ -142,28 +142,26 @@ export default async function Page({
               Services below are proposed offerings until confirmed by the
               owner. Please contact Chaim to confirm availability.
             </div>
-            <div className="grid">
-              {active.map(([id, title, , desc]) => (
-                <Link className="card" href={`/services/${id}`} key={id}>
-                  <div className="iconbox">
-                    <BookOpen />
-                  </div>
-                  <h3>{title}</h3>
-                  <p>{s.serviceOverrides[id]?.description || desc}</p>
-                  <span className="btn text">
-                    Learn more <ArrowUpRight size={15} />
-                  </span>
-                </Link>
-              ))}
-              {s.customServices.map((item) => (
+            <div className="services-directory">
+              {[
+                ...active.map(([slug, title, , desc]) => ({
+                  slug,
+                  title,
+                  description: s.serviceOverrides[slug]?.description || desc,
+                })),
+                ...s.customServices,
+              ].map(({ slug, title, description }, i) => (
                 <Link
-                  className="card"
-                  href={`/services/${item.slug}`}
-                  key={item.slug}
+                  className="directory-service"
+                  key={slug}
+                  href={`/services/${slug}`}
                 >
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
-                  <span>Learn more ↗</span>
+                  <span className="service-number">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h2>{title}</h2>
+                  <p>{description}</p>
+                  <ArrowUpRight size={25} />
                 </Link>
               ))}
             </div>
@@ -209,22 +207,32 @@ export default async function Page({
           </div>
         )}
         {section === "calculators" && (
-          <div className="grid">
-            {calculators.map(([id, title, desc]) => (
-              <Link className="card" href={`/calculators/${id}`} key={id}>
-                <div className="iconbox">
-                  <BookOpen />
+          <div className="calculator-directory">
+            {calculators.map(([id, title, desc], i) => (
+              <Link
+                className="calculator-directory-link"
+                key={id}
+                href={`/calculators/${id}`}
+              >
+                <span className="directory-number">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <div className="articlemeta">
+                    {[
+                      "income-tax",
+                      "self-employment",
+                      "quarterly-tax",
+                    ].includes(id)
+                      ? "2025 & 2026 · Tax planning"
+                      : "Everyday financial planning"}
+                  </div>
+                  <h2>{title}</h2>
+                  <p>{desc}</p>
+                  <span className="underlined-link">
+                    Explore your numbers <ArrowUpRight size={18} />
+                  </span>
                 </div>
-                <h3>{title}</h3>
-                <p>{desc}</p>
-                <div className="articlemeta">
-                  {["business-profit", "hourly-rate", "savings-goal"].includes(
-                    id,
-                  )
-                    ? "Ready to explore"
-                    : "2025 & 2026 planning estimates"}
-                </div>
-                <span className="btn text">Open calculator ↗</span>
               </Link>
             ))}
           </div>

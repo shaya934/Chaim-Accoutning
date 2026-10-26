@@ -20,13 +20,15 @@ test("public routes have a heading, distinct title and no horizontal mobile over
   ]) {
     await page.goto(path);
     await expect(page.locator("h1")).toHaveCount(1);
-    await page.setViewportSize({ width: 390, height: 844 });
-    expect(
-      await page.evaluate(
-        () => document.documentElement.scrollWidth <= window.innerWidth,
-      ),
-      path,
-    ).toBeTruthy();
+    for (const width of [320, 390, 768]) {
+      await page.setViewportSize({ width, height: 844 });
+      await expect
+        .poll(
+          async () => page.evaluate(() => document.documentElement.scrollWidth),
+          { message: `${path} at ${width}px` },
+        )
+        .toBeLessThanOrEqual(width);
+    }
   }
 });
 test("business profit calculator responds to input and reset", async ({
@@ -92,7 +94,7 @@ test("header phone replaces consultation, hero has no duplicate phone and floati
     0,
   );
   await expect(page.locator('.hero a[href^="tel:"]')).toHaveCount(0);
-  await expect(page.locator(".contactfloat")).toHaveCount(0);
+  await expect(page.locator(".contactfloat, .mobilecall")).toHaveCount(0);
   await expect(page.locator(".hero-picture img")).toHaveAttribute(
     "src",
     "/hero-sunlit-meeting-space.webp",

@@ -24,8 +24,13 @@ export function CTA() {
     <section className="wrap block">
       <div className="cta">
         <div>
-          <h2>Accounting help is just one conversation away.</h2>
-          <p>Let’s make your finances feel a little less complicated.</p>
+          <div className="eyebrow">Your next step starts here</div>
+          <h2>
+            Let’s make room
+            <br />
+            for <em>more clarity.</em>
+          </h2>
+          <p>Bring your questions. We’ll start with a conversation.</p>
         </div>
         <Link className="btn" href="/booking">
           Book an Appointment <ArrowUpRight size={18} />

@@ -171,9 +171,6 @@ export default async function Layout({
             </div>
           </div>
         </footer>
-        <a className="mobilecall" href={`tel:${s.phone}`}>
-          <Phone size={15} /> Call Chaim
-        </a>
       </body>
     </html>
   );

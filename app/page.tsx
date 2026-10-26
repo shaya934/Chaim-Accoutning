@@ -3,13 +3,13 @@ import Link from "next/link";
 import {
   ArrowUpRight,
   ArrowRight,
+  ArrowDownRight,
   HeartHandshake,
   Wallet,
   CalendarDays,
   MessageCircle,
   ChartNoAxesCombined,
   Leaf,
-  Sparkles,
 } from "lucide-react";
 import { services, calculators } from "@/lib/content";
 import { CTA } from "@/components/shared";
@@ -61,11 +61,13 @@ export default async function Home() {
               <span className="status-dot" /> Accounting, with you in mind
             </div>
             <h1>
-              Your finances deserve <em>personal attention.</em>
+              <span>Your numbers.</span>
+              <em>Our attention.</em>
             </h1>
             <p>
-              Less overwhelm. More understanding. Thoughtful accounting and tax
-              guidance from someone who takes the time to know you.
+              Accounting should give you clarity, not more questions. Get
+              practical guidance, personal attention, and a clear next step—with
+              Chaim Gesteter.
             </p>
             <div className="actions">
               <Link className="btn" href="/booking">
@@ -83,10 +85,6 @@ export default async function Home() {
             </div>
           </div>
           <div className="hero-art">
-            <div className="art-orbit" aria-hidden="true" />
-            <div className="art-sparkle" aria-hidden="true">
-              <Sparkles size={36} strokeWidth={1} />
-            </div>
             <div className="hero-picture">
               <img
                 src="/hero-sunlit-meeting-space.webp"
@@ -94,32 +92,26 @@ export default async function Home() {
                 fetchPriority="high"
               />
             </div>
-            <div className="art-note">
+            <div className="hero-image-caption">
               <span>
-                <HeartHandshake size={24} strokeWidth={1.4} />
-              </span>
-              <div>
-                A little clarity.
+                Professional accounting.
                 <br />
-                <b>A lot of care.</b>
-              </div>
+                <b>Personal by nature.</b>
+              </span>
+              <ArrowDownRight size={36} strokeWidth={1} />
             </div>
-            <span className="art-caption">
-              Good with numbers. Here for people.
-            </span>
           </div>
         </div>
       </section>
       <section className="wrap benefits-section">
         <div className="benefits-intro">
-          <p>
-            Professional accounting.
+          <div className="eyebrow">The difference is personal</div>
+          <h2>
+            Numbers matter.
             <br />
-            <span>A more personal experience.</span>
-          </p>
-          <span className="handdrawn-arrow" aria-hidden="true">
-            ↝
-          </span>
+            <em>So do you.</em>
+          </h2>
+          <p>A thoughtful approach to the financial side of your life.</p>
         </div>
         <div className="benefits-list">
           {features.map(([Icon, title, text]) => (
@@ -136,9 +128,9 @@ export default async function Home() {
           <div className="services-intro">
             <div className="eyebrow">A little support goes a long way</div>
             <h2>
-              More room for
+              Support for
               <br />
-              <em>what matters.</em>
+              <em>what’s next.</em>
             </h2>
             <p>
               From getting your records in order to understanding your next
@@ -193,11 +185,9 @@ export default async function Home() {
         <div className="personal-copy">
           <div className="eyebrow">Meet your accountant</div>
           <h2>
-            Hi, I’m Chaim.
+            A real person.
             <br />
-            Let’s make this
-            <br />
-            <em>feel simpler.</em>
+            <em>A clearer way forward.</em>
           </h2>
           <p>
             Great accounting starts with a good conversation. What’s on your
@@ -218,8 +208,9 @@ export default async function Home() {
           <div className="center-heading">
             <div className="eyebrow">No complicated process</div>
             <h2>
-              A conversation.
-              <br />A plan. <em>A clearer path.</em>
+              A clear start.
+              <br />
+              <em>A simpler process.</em>
             </h2>
             <p>We’ll take it one step at a time, together.</p>
           </div>
@@ -247,17 +238,17 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <section className="wrap tools-section">
-        <div className="tools-shell">
+      <section className="tools-section">
+        <div className="wrap tools-shell">
           <div className="sectionhead">
             <div>
               <div className="eyebrow">
                 For the curious, and the planning ahead
               </div>
               <h2>
-                A little insight.
+                Know your numbers.
                 <br />
-                <em>A fresh perspective.</em>
+                <em>See the possibilities.</em>
               </h2>
             </div>
             <div>
@@ -313,9 +304,9 @@ export default async function Home() {
             You don’t have to have it all figured out
           </div>
           <h2>
-            Not sure where
+            Not sure?
             <br />
-            <em>to start?</em>
+            <em>Start here.</em>
           </h2>
           <p>
             That’s okay. Tell us a little about what’s on your mind, and we’ll
@@ -381,31 +372,39 @@ export default async function Home() {
             <div>
               <div className="eyebrow">Helpful tips & insights</div>
               <h2>
-                A little knowledge.
+                Good questions.
                 <br />
-                <em>A clearer perspective.</em>
+                <em>Useful reading.</em>
               </h2>
             </div>
             <Link className="underlined-link" href="/articles">
               Visit the resource center <ArrowUpRight size={18} />
             </Link>
           </div>
-          <div className="grid">
+          <div className="journal-teasers">
             {articles.map((a) => (
-              <Link className="card" key={a.slug} href={`/articles/${a.slug}`}>
-                <img
-                  className="articlecover"
-                  src={a.image || "/article-0.svg"}
-                  alt="Financial planning illustration"
-                />
-                <div className="articlemeta">
-                  {a.category} · {Math.ceil(a.body.split(/\s+/).length / 200)}{" "}
-                  min read
+              <Link
+                className="article-teaser"
+                key={a.slug}
+                href={`/articles/${a.slug}`}
+              >
+                <div className="story-image">
+                  <img
+                    src={a.image || "/article-0.svg"}
+                    alt="A warm, illustrative financial planning workspace"
+                    loading="lazy"
+                  />
                 </div>
-                <h3>{a.title}</h3>
-                <span className="underlined-link">
-                  Read the guide <ArrowUpRight size={16} />
-                </span>
+                <div className="story-copy">
+                  <div className="articlemeta">
+                    {a.category} · {Math.ceil(a.body.split(/\s+/).length / 200)}{" "}
+                    min read
+                  </div>
+                  <h3>{a.title}</h3>
+                  <span className="underlined-link">
+                    Read the guide <ArrowUpRight size={17} />
+                  </span>
+                </div>
               </Link>
             ))}
           </div>

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 export type ArticleCard = {
   slug: string;
   title: string;
@@ -39,23 +40,32 @@ export default function Articles({ articles }: { articles: ArticleCard[] }) {
       </div>
       {!shown.length ? (
         <div className="empty">
-          No published articles match your search. Professionally reviewed
-          resources are coming soon.
+          No articles match that search. Try a different topic or a shorter
+          search.
         </div>
       ) : (
-        <div className="grid">
+        <div className="journal-index grid">
           {shown.map((a) => (
-            <Link className="card" href={`/articles/${a.slug}`} key={a.slug}>
-              <img
-                className="articlecover"
-                alt="Financial planning illustration"
-                src={a.image || "/article-0.svg"}
-              />
+            <Link
+              className="journal-story"
+              href={`/articles/${a.slug}`}
+              key={a.slug}
+            >
+              <div className="story-image">
+                <img
+                  className="articlecover"
+                  alt="An illustrative financial planning workspace"
+                  src={a.image || "/article-0.svg"}
+                  loading="lazy"
+                />
+              </div>
               <div className="articlemeta">
                 {a.category} · {a.minutes} min read
               </div>
               <h3>{a.title}</h3>
-              <span className="btn text">Read the guide ↗</span>
+              <span className="underlined-link">
+                Read the guide <ArrowUpRight size={17} />
+              </span>
             </Link>
           ))}
         </div>

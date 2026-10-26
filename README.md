@@ -1,6 +1,6 @@
 # Chaim Gesteter Accounting
 
-A complete Next.js App Router application with TypeScript, React, Lucide icons, Recharts, PostgreSQL, and Drizzle ORM. The visual system uses bundled DM Sans, DM Serif Display, and Manrope fonts, two locally served, generated editorial workspace images, warm cream, evergreen, and soft sage. No remote fonts, analytics, or stock-photo requests are needed.
+A complete Next.js App Router application with TypeScript, React, Lucide icons, Recharts, PostgreSQL, and Drizzle ORM. The visual system uses bundled DM Sans, DM Serif Display, and Manrope fonts, locally served editorial workspace images, warm ivory, deep evergreen, and terracotta/gold accents. The design uses oversized display typography, large editorial crops, open numbered service listings, a calculator directory, and magazine-style article layouts. No floating contact widget or announcement bar is included. No remote fonts, analytics, or stock-photo requests are needed.
 
 ## Quick start
 
@@ -27,7 +27,7 @@ If using your own PostgreSQL instance, create `.env.local` using `.env.example`,
 
 ## What is implemented
 
-- Responsive homepage, sticky navigation with a click-to-call phone number, mobile menu, mobile call button, and a rules-based service finder.
+- Responsive homepage, sticky navigation with a click-to-call phone number, mobile menu and a rules-based service finder.
 - About, seven individual service pages and service overview, pricing, ten expandable FAQs, booking, privacy, and terms.
 - Six calculator routes: operating profit, hourly rate, and savings are live, with real formulas, charts, reset controls, and assumptions. Federal ordinary income and self-employment tax estimators support 2025 and 2026. The quarterly tool budgets 100% of estimated current-year federal tax after withholding, across four payment periods; it does not calculate prior-year safe harbors or underpayment penalties.
 - Resource center with category filtering, search, clean URLs, article pages, reading times, related links, and sharing. Ten 600–1,000-word evergreen financial-organization and planning articles are published by default from `lib/published-articles.json`, with an editorial review date, not a claim of accountant certification. They contain no year-specific tax advice. Existing owner content is preserved; the versioned content merge adds the new public articles to older settings and respects saved edits/unpublication. After contentVersion 2 is saved, deliberate article deletions remain deleted. Twelve additional 600–1,000-word starter drafts live in `lib/articles.json`. Import them from Admin → Articles. They are unpublished because no professional factual review has occurred. Public routes return 404 for drafts. Publication requires an authenticated editor to record a review date and explicitly publish.
