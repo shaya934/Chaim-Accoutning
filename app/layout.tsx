@@ -2,7 +2,7 @@ import { siteUrl } from "@/lib/site-url";
 import { settings } from "@/lib/settings";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowUpRight, Phone, Leaf } from "lucide-react";
+import { Phone, Leaf } from "lucide-react";
 
 import "./globals.css";
 export const metadata: Metadata = {
@@ -54,9 +54,10 @@ export default async function Layout({
                   {t}
                 </Link>
               ))}
-              <Link className="btn" href="/booking">
-                Book a Consultation <ArrowUpRight size={15} />
-              </Link>
+              <a className="btn header-phone" href={`tel:${s.phone}`}>
+                <Phone size={15} />
+                {s.phone}
+              </a>
               <details className="mobilemenu">
                 <summary>Menu</summary>
                 <nav>
@@ -173,14 +174,6 @@ export default async function Layout({
         <a className="mobilecall" href={`tel:${s.phone}`}>
           <Phone size={15} /> Call Chaim
         </a>
-        <details className="contactfloat">
-          <summary>
-            Let’s talk <Phone size={14} />
-          </summary>
-          <a href={`tel:${s.phone}`}>Call {s.phone}</a>
-          <Link href="/booking">Book an appointment</Link>
-          <Link href="/contact">Send a message</Link>
-        </details>
       </body>
     </html>
   );

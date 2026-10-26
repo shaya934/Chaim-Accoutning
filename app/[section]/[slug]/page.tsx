@@ -105,7 +105,9 @@ export default async function Detail({
             <img
               className="articlecover"
               style={{ height: 300 }}
-              src={s.serviceOverrides[slug]?.image || "/workspace.svg"}
+              src={
+                s.serviceOverrides[slug]?.image || "/personal-conversation.webp"
+              }
               alt="Thoughtful planning with organized financial records"
             />
             <div className="card">

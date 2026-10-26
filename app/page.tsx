@@ -9,7 +9,6 @@ import {
   MessageCircle,
   ChartNoAxesCombined,
   Leaf,
-  Phone,
   Sparkles,
 } from "lucide-react";
 import { services, calculators } from "@/lib/content";
@@ -75,12 +74,6 @@ export default async function Home() {
                   : "Book a Consultation"}{" "}
                 <ArrowUpRight size={18} />
               </Link>
-              <a className="hero-call" href={`tel:${s.phone}`}>
-                <Phone size={17} />
-                <span>
-                  Prefer a conversation?<b>{s.phone}</b>
-                </span>
-              </a>
             </div>
             <div className="hero-reassurance">
               <span className="tiny-leaf">
@@ -96,8 +89,8 @@ export default async function Home() {
             </div>
             <div className="hero-picture">
               <img
-                src="/workspace.svg"
-                alt="A thoughtfully illustrated workspace with greenery, a notebook, and a cup of coffee"
+                src="/personal-conversation.webp"
+                alt="A warm, sunlit conversation over a notebook and coffee — illustrative imagery"
                 fetchPriority="high"
               />
             </div>
@@ -190,15 +183,11 @@ export default async function Home() {
       </section>
       <section className="wrap personal-section">
         <div className="personal-art">
-          <div className="personal-circle">
-            <span className="monogram">
-              cg<span>.</span>
-            </span>
-            <Leaf className="personal-leaf" size={90} strokeWidth={0.65} />
-            <span className="personal-circle-label">
-              Accounting with a human touch
-            </span>
-          </div>
+          <img
+            className="personal-photo"
+            src="/quiet-planning.webp"
+            alt="A sunlit desk with a notebook, coffee, and greenery — illustrative imagery"
+          />
           <span className="personal-handwritten">Someone in your corner.</span>
         </div>
         <div className="personal-copy">

@@ -9,6 +9,7 @@ const url = z
   );
 export const settingsSchema = z
   .object({
+    contentVersion: z.number().int().optional(),
     businessName: z.string().min(1).max(150),
     phone: z.string().regex(/^[+\d\s().-]{7,30}$/),
     email: z.union([z.literal(""), z.string().email()]),

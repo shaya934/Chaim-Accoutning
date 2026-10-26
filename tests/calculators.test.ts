@@ -34,5 +34,8 @@ test("unreachable goals and passed goals", () => {
   assert.equal(savings(1, 10, 0, 0, 12).months, 0);
   assert.equal(savings(1, 0, 0, 0, 0).needed, null);
 });
-test("unverified tax rules cannot produce public estimates", () =>
-  assert.equal(taxRules.verified, false));
+test("published tax rules have a pinned source and verification date", () => {
+  assert.equal(taxRules.verified, true);
+  assert.equal(taxRules.verification.revision.length, 40);
+  assert.ok(taxRules.verifiedAt);
+});

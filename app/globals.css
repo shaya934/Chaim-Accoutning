@@ -552,29 +552,6 @@ footer {
 .mobilemenu {
   display: none;
 }
-.contactfloat {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  z-index: 40;
-}
-.contactfloat summary {
-  padding: 14px;
-  background: var(--teal);
-  border-radius: 30px;
-  color: white;
-  box-shadow: 0 5px 25px #14352e30;
-}
-.contactfloat[open] {
-  background: white;
-  padding: 12px;
-  border: 1px solid #d4ded5;
-  border-radius: 18px;
-}
-.contactfloat a {
-  display: block;
-  padding: 8px;
-}
 .skip {
   position: fixed;
   top: -100px;
@@ -738,10 +715,6 @@ footer {
   }
   .result strong {
     font-size: 32px;
-  }
-  .contactfloat {
-    bottom: 15px;
-    right: 15px;
   }
   .micro {
     flex-wrap: wrap;
@@ -1837,5 +1810,421 @@ footer {
   }
   .pagehero h1 {
     font-size: clamp(40px, 10vw, 55px);
+  }
+}
+/* Photography and quiet, open content take precedence over framed panels. */
+.hero-picture {
+  border-radius: 46% 46% 42% 42%;
+  transform: rotate(2deg);
+  background: #e8dfcd;
+}
+.hero-picture img {
+  object-position: 53% 50%;
+  transform: rotate(-2deg) scale(1.06);
+}
+.personal-art {
+  max-width: 460px;
+  padding-bottom: 40px;
+}
+.personal-photo {
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+  object-position: 60% 50%;
+  border-radius: 48% 48% 10px 10px;
+  display: block;
+}
+.personal-handwritten {
+  bottom: 0;
+  left: 35px;
+  color: #8c6d47;
+}
+.card {
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 25px 0;
+}
+.card:hover {
+  box-shadow: none;
+  transform: none;
+}
+.grid > .card {
+  border-bottom: 1px solid #dbded2;
+}
+.tools-shell {
+  background: transparent;
+  color: var(--navy);
+  border-radius: 0;
+  padding: 60px 0;
+  border-top: 1px solid #d9ded1;
+  border-bottom: 1px solid #d9ded1;
+}
+.tools-shell .eyebrow {
+  color: var(--teal);
+}
+.tools-shell .eyebrow:before {
+  background: var(--teal);
+}
+.tools-shell h2 em {
+  color: #927044;
+}
+.tools-shell p {
+  color: var(--muted);
+}
+.tools-shell .underlined-link {
+  color: var(--teal);
+  border-color: #9eaf96;
+}
+.tool-link {
+  border-color: #d6dccd;
+}
+.tool-drawing {
+  color: #688459;
+}
+.drawing-0 i {
+  background: #bdcaa7;
+}
+.drawing-0 i:nth-child(2) {
+  background: #a9b591;
+}
+.drawing-0 i:nth-child(3) {
+  background: #c5b497;
+}
+.drawing-0 i:nth-child(4) {
+  background: #829575;
+}
+.drawing-0 i:nth-child(5) {
+  background: #5c7d60;
+}
+.cta {
+  background: transparent;
+  border-radius: 0;
+  padding: 65px 10px 45px;
+}
+.cta:before,
+.cta:after {
+  display: none;
+}
+.services-section {
+  background: #f2eee5;
+  border-radius: 0;
+}
+.service-row {
+  border-color: #dcd8c9;
+}
+.service-row:first-child {
+  border-color: #dcd8c9;
+}
+.header-phone {
+  white-space: nowrap;
+}
+.calculator-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 85px;
+  align-items: start;
+}
+.calculator-inputs h2 {
+  font-size: 32px;
+  margin: 0 0 15px;
+}
+.calculator-intro {
+  font-size: 14px;
+  line-height: 1.9;
+  margin-bottom: 30px;
+  max-width: 430px;
+}
+.calculator-inputs .form {
+  gap: 23px;
+}
+.calculator-inputs small,
+.calculator-inputs label small {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.calculator-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.calculator-inputs input,
+.calculator-inputs select {
+  background: #f2f1e9;
+  border-color: transparent;
+  border-radius: 10px;
+  padding: 14px;
+}
+.calculator-inputs input:focus,
+.calculator-inputs select:focus {
+  outline: 2px solid #718568;
+  outline-offset: 2px;
+}
+.input-group {
+  display: grid;
+  gap: 8px;
+}
+.input-group label {
+  font-size: 13px;
+  font-weight: 500;
+}
+.input-group input[type="range"] {
+  padding: 0;
+  accent-color: #647f59;
+  background: transparent;
+}
+.reset-button {
+  justify-self: start;
+  background: transparent !important;
+  border-color: #bfcbba;
+  color: var(--teal);
+}
+.calculator-output {
+  position: sticky;
+  top: 120px;
+}
+.calculator-output .result {
+  background: #efede2;
+  color: var(--navy);
+  border-radius: 0;
+  padding: 34px 30px;
+}
+.calculator-output .result > p {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 0;
+}
+.calculator-output .result strong {
+  font:
+    400 54px/1.25 "DM Serif Display",
+    Georgia,
+    serif;
+  letter-spacing: -0.02em;
+  margin: 14px 0 24px;
+}
+.calculator-output .result dl {
+  font-size: 12px;
+  gap: 16px;
+  border-top: 1px solid #d6d9cc;
+  padding-top: 25px;
+}
+.calculator-output .result dt {
+  color: var(--muted);
+}
+.calculator-output .result dd {
+  font-weight: 500;
+  text-align: right;
+  max-width: 180px;
+}
+.calculator-output .chart {
+  background: transparent;
+  border-radius: 0;
+  margin-top: 25px;
+  padding: 0;
+  height: 220px;
+}
+.estimate-label {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: -8px;
+  margin-bottom: 26px;
+}
+.calculator-assumptions {
+  font-size: 11px;
+  line-height: 1.9;
+  padding: 10px 0;
+}
+.calculator-help {
+  padding: 70px 0 20px;
+  border-top: 1px solid #dce0d3;
+  margin-top: 65px;
+}
+.calculator-help h2 {
+  font-size: 34px;
+}
+.calculator-help p {
+  font-size: 14px;
+  max-width: 680px;
+  margin-bottom: 24px;
+}
+.calculator-breakdown {
+  margin-top: 60px;
+  padding-top: 35px;
+  border-top: 1px solid #dce0d3;
+}
+.calculator-breakdown h2 {
+  font-size: 31px;
+}
+.calculator-breakdown p {
+  font-size: 13px;
+  line-height: 1.9;
+  max-width: 800px;
+}
+.calculator-sources {
+  margin-top: 38px;
+  font-size: 12px;
+}
+.calculator-sources p {
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.table-scroll {
+  overflow-x: auto;
+}
+.table-scroll table {
+  font-size: 13px;
+}
+.payment-timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin: 30px 0;
+}
+.payment-timeline > div {
+  border-top: 2px solid #b6bfa0;
+  padding-top: 18px;
+  display: grid;
+  gap: 7px;
+}
+.payment-timeline small {
+  font-size: 11px;
+  color: var(--muted);
+}
+.payment-timeline b {
+  font-weight: 500;
+  font-size: 14px;
+}
+.payment-timeline span {
+  font:
+    29px "DM Serif Display",
+    Georgia,
+    serif;
+}
+@media (max-width: 950px) {
+  .calculator-layout {
+    gap: 40px;
+  }
+}
+@media (max-width: 700px) {
+  .personal-photo {
+    height: 340px;
+  }
+  .personal-art {
+    max-width: 360px;
+  }
+  .calculator-layout {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  .calculator-output {
+    position: static;
+  }
+  .calculator-pair {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .calculator-pair select {
+    font-size: 12px;
+    padding: 12px 8px;
+  }
+  .calculator-output .result {
+    padding: 28px 20px;
+  }
+  .calculator-output .result strong {
+    font-size: 45px;
+  }
+  .calculator-help {
+    margin-top: 35px;
+    padding-top: 40px;
+  }
+  .calculator-help h2 {
+    font-size: 31px;
+  }
+  .payment-timeline {
+    grid-template-columns: 1fr 1fr;
+  }
+  .tools-shell {
+    padding: 35px 0;
+    border-radius: 0;
+  }
+  .tool-link {
+    grid-template-columns: 65px 1fr;
+  }
+  .cta {
+    padding: 35px 0;
+  }
+  .services-section {
+    border-radius: 0;
+  }
+}
+@media (max-width: 650px) {
+  .navlinks > .header-phone {
+    display: inline-flex;
+    font-size: 11px;
+    padding: 10px 12px;
+    gap: 6px;
+    min-height: 40px;
+  }
+  .header-phone svg {
+    width: 13px;
+  }
+  .navlinks {
+    gap: 10px;
+  }
+  .brand {
+    font-size: 13px;
+    gap: 7px;
+  }
+  .brand small {
+    display: none;
+  }
+  .mark {
+    width: 30px;
+    height: 30px;
+  }
+  .mark svg {
+    width: 19px;
+  }
+  .nav {
+    gap: 8px;
+  }
+  .mobilemenu summary {
+    font-size: 12px;
+  }
+  .mobilemenu {
+    padding: 12px 0;
+  }
+  .hero-art {
+    margin-top: 10px;
+  }
+  .hero-picture img {
+    height: 330px;
+  }
+  .personal-handwritten {
+    font-size: 24px;
+  }
+  .services-intro h2 {
+    font-size: 40px;
+  }
+}
+@media (max-width: 370px) {
+  .navlinks > .header-phone {
+    padding: 8px;
+    font-size: 10px;
+  }
+  .header-phone svg {
+    display: none;
+  }
+  .brand {
+    font-size: 12px;
+  }
+  .wrap {
+    padding-inline: 18px;
+  }
+  .navlinks {
+    gap: 7px;
   }
 }

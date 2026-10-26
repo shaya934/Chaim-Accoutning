@@ -1,0 +1,10 @@
+{
+  "checkedAt": "2026-10-26",
+  "method": "Rates, brackets, standard deductions, payroll tax thresholds, and SE minimum cross-checked against the versioned Policy Simulation Library Tax-Calculator current-law data and calculation implementation. This is a limited educational estimator, not professional certification or a complete return.",
+  "repository": "https://github.com/PSLmodels/Tax-Calculator",
+  "revision": "65df50a53edc24ceaab65a03bfacea01e428249f",
+  "dataSha256": "0167823035bde8543685cf35ff9a0a6a0696c72c3a5adb7ac3197c4eca3b1201",
+  "dataSource": "https://raw.githubusercontent.com/PSLmodels/Tax-Calculator/65df50a53edc24ceaab65a03bfacea01e428249f/taxcalc/policy_current_law.json",
+  "calculationSource": "https://github.com/PSLmodels/Tax-Calculator/blob/65df50a53edc24ceaab65a03bfacea01e428249f/taxcalc/calcfunctions.py",
+  "primaryReferenceAccess": "Direct IRS and SSA requests were blocked by this cloud network. No live primary-source verification or accountant review is claimed."
+}

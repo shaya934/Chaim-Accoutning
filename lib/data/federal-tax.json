@@ -1,0 +1,56 @@
+{
+  "2025": {
+    "rates": [0.1, 0.12, 0.22, 0.24, 0.32, 0.35, 0.37],
+    "standardDeduction": {
+      "single": 15750.0,
+      "joint": 31500.0,
+      "separate": 15750.0,
+      "head": 23625.0
+    },
+    "brackets": {
+      "single": [11925.0, 48475.0, 103350.0, 197300.0, 250525.0, 626350.0],
+      "joint": [23850.0, 96950.0, 206700.0, 394600.0, 501050.0, 751600.0],
+      "separate": [11925.0, 48475.0, 103350.0, 197300.0, 250525.0, 375800.0],
+      "head": [17000.0, 64850.0, 103350.0, 197300.0, 250500.0, 626350.0]
+    },
+    "socialSecurityWageBase": 176100.0,
+    "ssRate": 0.124,
+    "medicareRate": 0.029,
+    "additionalMedicareRate": 0.009,
+    "additionalMedicareThreshold": {
+      "single": 200000.0,
+      "joint": 250000.0,
+      "separate": 125000.0,
+      "head": 200000.0
+    },
+    "netEarningsFactor": 0.9235,
+    "minimumNetEarnings": 400.0
+  },
+  "2026": {
+    "rates": [0.1, 0.12, 0.22, 0.24, 0.32, 0.35, 0.37],
+    "standardDeduction": {
+      "single": 16100.0,
+      "joint": 32200.0,
+      "separate": 16100.0,
+      "head": 24150.0
+    },
+    "brackets": {
+      "single": [12400.0, 50400.0, 105700.0, 201775.0, 256225.0, 640600.0],
+      "joint": [24800.0, 100800.0, 211400.0, 403550.0, 512450.0, 768700.0],
+      "separate": [12400.0, 50400.0, 105700.0, 201775.0, 256225.0, 384350.0],
+      "head": [17700.0, 67450.0, 105700.0, 201750.0, 256200.0, 640600.0]
+    },
+    "socialSecurityWageBase": 184500.0,
+    "ssRate": 0.124,
+    "medicareRate": 0.029,
+    "additionalMedicareRate": 0.009,
+    "additionalMedicareThreshold": {
+      "single": 200000.0,
+      "joint": 250000.0,
+      "separate": 125000.0,
+      "head": 200000.0
+    },
+    "netEarningsFactor": 0.9235,
+    "minimumNetEarnings": 400.0
+  }
+}

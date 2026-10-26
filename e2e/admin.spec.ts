@@ -21,7 +21,7 @@ test("authenticated dashboard imports, edits, and saves drafts without publishin
   await page.getByRole("button", { name: "Import starter drafts" }).click();
   await expect(
     page.getByLabel("Choose an article").locator("option"),
-  ).toHaveCount(12);
+  ).toHaveCount(22);
   await page
     .getByRole("button", { name: "Save website changes", exact: true })
     .first()
@@ -29,8 +29,8 @@ test("authenticated dashboard imports, edits, and saves drafts without publishin
   await expect(page.getByRole("status")).toHaveText("Changes saved.");
   await page.goto("/articles");
   await expect(
-    page.getByText("No published articles match your search.", {
-      exact: false,
+    page.getByRole("heading", {
+      name: "A Calmer Monthly Money Routine for Your Small Business",
     }),
   ).toBeVisible();
   await page.goto("/admin");

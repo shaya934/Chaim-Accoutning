@@ -12,55 +12,69 @@ import {
   Line,
 } from "recharts";
 import { profit, hourly, savings } from "@/lib/calculators";
-import { taxRules } from "@/lib/tax-rules";
+import TaxCalculator from "./tax-calculator";
 const money = (n: number) =>
   new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
     maximumFractionDigits: 0,
   }).format(n);
-export default function Calculator({
+const defaults = {
+  revenue: 10000,
+  payroll: 2500,
+  rent: 1000,
+  utilities: 200,
+  marketing: 300,
+  insurance: 200,
+  other: 500,
+  income: 80000,
+  expenses: 15000,
+  weeks: 48,
+  hours: 25,
+  goal: 30000,
+  current: 5000,
+  contribution: 400,
+  rate: 4,
+  months: 36,
+};
+export default function Calculator(props: {
+  kind: string;
+  disclaimer: string;
+}) {
+  return ["income-tax", "self-employment", "quarterly-tax"].includes(
+    props.kind,
+  ) ? (
+    <TaxCalculator {...props} />
+  ) : (
+    <PlanningCalculator {...props} />
+  );
+}
+function PlanningCalculator({
   kind,
   disclaimer,
 }: {
   kind: string;
   disclaimer: string;
 }) {
-  const [values, setValues] = useState<Record<string, number>>({
-    revenue: 10000,
-    payroll: 2500,
-    rent: 1000,
-    utilities: 200,
-    marketing: 300,
-    insurance: 200,
-    other: 500,
-    income: 80000,
-    expenses: 15000,
-    weeks: 48,
-    hours: 25,
-    goal: 30000,
-    current: 5000,
-    contribution: 400,
-    rate: 4,
-    months: 36,
-  });
+  const [values, setValues] = useState<Record<string, number>>(defaults);
   const [target, setTarget] = useState("");
   const [error, setError] = useState("");
-  const change = (key: string, value: string) =>
+  const change = (key: string, value: string, max = 1e9) =>
     setValues((v) => ({
       ...v,
-      [key]: Math.max(0, Math.min(1e10, Number(value) || 0)),
+      [key]: Math.max(0, Math.min(max, Number(value) || 0)),
     }));
   const field = (key: string, label: string, max?: number) => (
-    <label key={key}>
-      {label}
+    <div className="input-group" key={key}>
+      <label htmlFor={key}>{label}</label>
       <input
+        id={key}
         type="number"
         value={values[key]}
         min={0}
-        max={max}
+        max={max ?? 1e9}
         step="any"
-        onChange={(e) => change(key, e.target.value)}
+        onChange={(e) => change(key, e.target.value, max)}
       />
       {max && (
         <input
@@ -69,14 +83,13 @@ export default function Calculator({
           min={0}
           max={max}
           value={values[key]}
-          onChange={(e) => change(key, e.target.value)}
+          onChange={(e) => change(key, e.target.value, max)}
         />
       )}
-    </label>
+    </div>
   );
-  const tax = ["income-tax", "self-employment", "quarterly-tax"].includes(kind);
-  let rows: [string, string][] = [];
   let amount = 0;
+  let rows: [string, string][] = [];
   let points: { name: string; value: number }[] = [];
   let growth: { month: number; balance: number }[] = [];
   if (kind === "business-profit") {
@@ -113,7 +126,7 @@ export default function Calculator({
       ["Weekly revenue target", money(r.weekly)],
     ];
     points = [
-      { name: "Desired income", value: values.income },
+      { name: "Income goal", value: values.income },
       { name: "Expenses", value: values.expenses },
     ];
   }
@@ -122,14 +135,14 @@ export default function Calculator({
       values.goal,
       values.current,
       values.contribution,
-      Math.min(values.rate, 30),
-      Math.min(values.months, 600),
+      values.rate,
+      values.months,
     );
     amount = r.projected;
     rows = [
       [
         "Monthly contribution needed",
-        r.needed === null ? "Select a future target date" : money(r.needed),
+        r.needed === null ? "Choose a future target" : money(r.needed),
       ],
       [
         "Estimated time to goal",
@@ -142,11 +155,16 @@ export default function Calculator({
   }
   return (
     <>
-      <div className="split">
-        <div className="card">
-          <h2 style={{ fontSize: 26, marginTop: 0 }}>
-            Let’s explore your numbers.
+      <div className="calculator-layout">
+        <div className="calculator-inputs">
+          <h2>
+            A little planning.
+            <br />A clearer picture.
           </h2>
+          <p className="calculator-intro">
+            Try a few numbers and see what changes. Your inputs stay in your
+            browser.
+          </p>
           <div className="form">
             {kind === "business-profit" &&
               [
@@ -184,104 +202,44 @@ export default function Calculator({
                     value={target}
                     min={new Date().toISOString().slice(0, 10)}
                     onChange={(e) => {
-                      setTarget(e.target.value);
+                      const value = e.target.value;
+                      setTarget(value);
+                      if (!value) {
+                        setError("");
+                        change("months", "36");
+                        return;
+                      }
                       const days =
-                        (new Date(e.target.value + "T12:00:00").getTime() -
+                        (new Date(value + "T12:00:00Z").getTime() -
                           Date.now()) /
                         86400000;
-                      if (days <= 0) {
+                      if (!Number.isFinite(days) || days <= 0) {
                         setError("Choose a future date.");
                         return;
                       }
+                      const months = Math.ceil(days / 30.4375);
+                      if (months > 600) {
+                        setError("Choose a target within the next 50 years.");
+                        return;
+                      }
                       setError("");
-                      change(
-                        "months",
-                        String(Math.max(1, Math.ceil(days / 30.4375))),
-                      );
+                      change("months", String(Math.max(1, months)));
                     }}
                   />
                 </label>
                 {!target && (
-                  <p>
-                    Default projection: 36 months. Choose a target date to
-                    adjust it.
-                  </p>
+                  <small>
+                    Starting projection: 36 months. Choose a date to explore a
+                    different timeline.
+                  </small>
                 )}
                 {error && <p role="alert">{error}</p>}
               </>
             )}
-            {tax && (
-              <>
-                <label>
-                  Tax year
-                  <select disabled>
-                    <option>{taxRules.year} — verification required</option>
-                  </select>
-                </label>
-                <label>
-                  {kind === "self-employment"
-                    ? "Annual net self-employment profit"
-                    : "Estimated annual income"}
-                  <input type="number" min="0" />
-                </label>
-                {kind !== "self-employment" && (
-                  <label>
-                    Filing status
-                    <select>
-                      <option>Single</option>
-                      <option>Married filing jointly</option>
-                      <option>Married filing separately</option>
-                      <option>Head of household</option>
-                    </select>
-                  </label>
-                )}
-                <label>
-                  {kind === "self-employment"
-                    ? "Relevant wage income"
-                    : "Expected deductions"}
-                  <input type="number" min="0" />
-                </label>
-                {kind === "income-tax" && (
-                  <label>
-                    Applicable adjustments
-                    <input type="number" min="0" />
-                  </label>
-                )}
-                {kind === "quarterly-tax" && (
-                  <>
-                    <label>
-                      Tax already withheld
-                      <input type="number" min="0" />
-                    </label>
-                    <label>
-                      Prior-year tax liability
-                      <input type="number" min="0" />
-                    </label>
-                  </>
-                )}
-              </>
-            )}
             <button
-              className="btn light"
+              className="btn light reset-button"
               onClick={() => {
-                setValues({
-                  revenue: 10000,
-                  payroll: 2500,
-                  rent: 1000,
-                  utilities: 200,
-                  marketing: 300,
-                  insurance: 200,
-                  other: 500,
-                  income: 80000,
-                  expenses: 15000,
-                  weeks: 48,
-                  hours: 25,
-                  goal: 30000,
-                  current: 5000,
-                  contribution: 400,
-                  rate: 4,
-                  months: 36,
-                });
+                setValues(defaults);
                 setTarget("");
                 setError("");
               }}
@@ -290,114 +248,78 @@ export default function Calculator({
             </button>
           </div>
         </div>
-        <div>
-          {tax ? (
-            <div className="result">
-              <h2 style={{ fontSize: 28 }}>Accuracy comes first.</h2>
-              <p>
-                Final estimates are disabled until this year’s tax rules have
-                been verified.
-              </p>
-              <div className="notice">
-                Tax year: {taxRules.year}
-                <br />
-                Last verification: not yet verified
-                <br />
-                Configuration required: tax brackets, deductions, wage bases,
-                filing thresholds, safe-harbor rules, and payment deadlines.
-              </div>
-              <p>
-                We won’t guess at your tax obligations. Call Chaim to discuss
-                your circumstances.
-              </p>
-              {taxRules.sources.map((url) => (
-                <p key={url}>
-                  <a
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ textDecoration: "underline" }}
-                  >
-                    Review IRS guidance ↗
-                  </a>
-                </p>
+        <div className="calculator-output">
+          <div className="result" aria-live="polite">
+            <p>
+              {kind === "business-profit"
+                ? "Monthly operating profit"
+                : kind === "hourly-rate"
+                  ? "Minimum hourly billing rate"
+                  : "Projected savings at target"}
+            </p>
+            <strong>
+              {(kind === "hourly-rate" && (!values.weeks || !values.hours)) ||
+              (kind === "savings-goal" && error)
+                ? "—"
+                : money(amount)}
+            </strong>
+            <dl>
+              {rows.map(([k, v]) => (
+                <div key={k} style={{ display: "contents" }}>
+                  <dt>{k}</dt>
+                  <dd>{v}</dd>
+                </div>
               ))}
+            </dl>
+            <div
+              className="chart"
+              role="img"
+              aria-label={
+                kind === "savings-goal"
+                  ? "Projected savings growth"
+                  : points.map((p) => `${p.name}: ${money(p.value)}`).join("; ")
+              }
+            >
+              <ResponsiveContainer width="100%" height="100%">
+                {growth.length ? (
+                  <LineChart data={growth}>
+                    <XAxis dataKey="month" />
+                    <YAxis width={65} />
+                    <Tooltip formatter={(value) => money(Number(value))} />
+                    <Line
+                      dataKey="balance"
+                      stroke="#6d8252"
+                      strokeWidth={3}
+                      dot={false}
+                    />
+                  </LineChart>
+                ) : (
+                  <BarChart data={points}>
+                    <XAxis dataKey="name" />
+                    <YAxis width={65} />
+                    <Tooltip formatter={(value) => money(Number(value))} />
+                    <Bar dataKey="value" fill="#a1af80" radius={[8, 8, 0, 0]} />
+                  </BarChart>
+                )}
+              </ResponsiveContainer>
             </div>
-          ) : (
-            <div className="result" aria-live="polite">
-              <p>
-                {kind === "business-profit"
-                  ? "Monthly operating profit"
-                  : kind === "hourly-rate"
-                    ? "Minimum hourly billing rate"
-                    : "Projected savings at target"}
-              </p>
-              <strong>
-                {kind === "hourly-rate" && (!values.weeks || !values.hours)
-                  ? "—"
-                  : money(amount)}
-              </strong>
-              <dl>
-                {rows.map(([k, v]) => (
-                  <div key={k} style={{ display: "contents" }}>
-                    <dt>{k}</dt>
-                    <dd>{v}</dd>
-                  </div>
-                ))}
-              </dl>
-              <div
-                className="chart"
-                role="img"
-                aria-label={
-                  kind === "savings-goal"
-                    ? "Projected savings growth over the selected period"
-                    : points
-                        .map((p) => `${p.name}: ${money(p.value)}`)
-                        .join("; ")
-                }
-              >
-                <ResponsiveContainer width="100%" height="100%">
-                  {growth.length ? (
-                    <LineChart data={growth}>
-                      <XAxis dataKey="month" />
-                      <YAxis width={65} />
-                      <Tooltip />
-                      <Line
-                        dataKey="balance"
-                        stroke="#17695f"
-                        strokeWidth={3}
-                        dot={false}
-                      />
-                    </LineChart>
-                  ) : (
-                    <BarChart data={points}>
-                      <XAxis dataKey="name" />
-                      <YAxis width={65} />
-                      <Tooltip />
-                      <Bar
-                        dataKey="value"
-                        fill="#17695f"
-                        radius={[5, 5, 0, 0]}
-                      />
-                    </BarChart>
-                  )}
-                </ResponsiveContainer>
-              </div>
-            </div>
-          )}
-          <div className="notice">
+          </div>
+          <p className="calculator-assumptions">
             {disclaimer}{" "}
             {kind === "savings-goal"
-              ? "Assumes fixed returns compounded monthly and contributions at month end. Returns are not guaranteed. Inflation, fees, taxes, and contribution timing may change results. Projection limited to 50 years."
+              ? "Assumes fixed returns compounded monthly with contributions at month end. Returns are not guaranteed. Excludes inflation, fees, and taxes. Projection limited to 50 years."
               : kind === "hourly-rate"
-                ? "Excludes taxes, unpaid leave beyond selected working weeks, and additional reserves."
-                : kind === "business-profit"
-                  ? "Operating profit excludes taxes, financing costs, owner draws, and expenses not entered. Annualization assumes twelve identical months."
-                  : "Simplified federal estimates would exclude credits and special circumstances. No estimate or payment deadlines are provided until verification."}
-          </div>
+                ? "Excludes taxes, extra reserves, and unpaid leave beyond your selected working weeks."
+                : "Excludes taxes, financing costs, owner draws, and costs not entered. Annualization assumes twelve identical months."}
+          </p>
         </div>
       </div>
-      <div className="card" style={{ marginTop: 30 }}>
+      <div className="calculator-help">
+        <h2>
+          A number is a starting point.
+          <br />
+          <em>A conversation adds perspective.</em>
+        </h2>
         <p>
           Have questions about your results? Chaim Gesteter can help you
           understand your financial situation.

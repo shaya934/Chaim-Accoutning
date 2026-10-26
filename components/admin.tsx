@@ -3,6 +3,7 @@ import { useState } from "react";
 import type { Settings } from "@/lib/content";
 import { services, faqs } from "@/lib/content";
 import drafts from "@/lib/articles.json";
+import { taxRules } from "@/lib/tax-rules";
 type Inquiry = {
   id: string;
   name: string;
@@ -638,11 +639,12 @@ export default function Admin({
           <>
             <h2 style={{ fontSize: 28 }}>Accuracy before estimates</h2>
             <div className="notice">
-              2026 tax-rule version: unverified. Federal income,
-              self-employment, and quarterly tax estimates are disabled. An
-              accountant and developer must verify and test statutory rules in
-              lib/tax-rules.ts before enabling estimates. A dashboard toggle
-              cannot certify tax accuracy.
+              All six planning calculators are active. Federal ordinary income
+              and self-employment estimates support 2025 and 2026. Source data
+              cross-check: {taxRules.verifiedAt}, against the versioned
+              Tax-Calculator model. Quarterly payments use a 100% current-year
+              planning budget, not a prior-year safe-harbor calculation. These
+              simplified tools do not constitute professional tax review.
             </div>
             {field(
               "calculatorDisclaimer",

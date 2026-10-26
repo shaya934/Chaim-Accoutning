@@ -1,3 +1,4 @@
+import publishedArticles from "./published-articles.json" with { type: "json" };
 export const services = [
   [
     "individual-tax-preparation",
@@ -75,6 +76,7 @@ export const calculators = [
   ],
 ];
 export const defaults = {
+  contentVersion: 2,
   businessName: "Chaim Gesteter Accounting",
   phone: "848-223-4073",
   email: "",
@@ -106,7 +108,7 @@ export const defaults = {
     businessType?: string;
   }[],
   prices: {} as Record<string, string>,
-  articles: [] as {
+  articles: publishedArticles as {
     slug: string;
     title: string;
     body: string;

@@ -92,7 +92,7 @@ export default async function Page({
               </div>
               <div className="scene" style={{ minHeight: 320 }}>
                 <img
-                  src={s.photo || "/workspace.svg"}
+                  src={s.photo || "/quiet-planning.webp"}
                   alt={
                     s.photo
                       ? "Chaim Gesteter"
@@ -222,7 +222,7 @@ export default async function Page({
                     id,
                   )
                     ? "Ready to explore"
-                    : "Tax-rule verification pending"}
+                    : "2025 & 2026 planning estimates"}
                 </div>
                 <span className="btn text">Open calculator ↗</span>
               </Link>
