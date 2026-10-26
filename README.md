@@ -1,6 +1,6 @@
 # Chaim Gesteter Accounting
 
-A complete Next.js App Router application with TypeScript, React, Lucide icons, Recharts, PostgreSQL, and Drizzle ORM. The visual system uses bundled DM Sans/Manrope fonts, a custom SVG workspace illustration, navy, and soft green. No remote fonts, analytics, or stock-photo requests are needed.
+A complete Next.js App Router application with TypeScript, React, Lucide icons, Recharts, PostgreSQL, and Drizzle ORM. The visual system uses bundled DM Sans, DM Serif Display, and Manrope fonts, a custom SVG workspace illustration, warm cream, evergreen, and soft sage. No remote fonts, analytics, or stock-photo requests are needed.
 
 ## Quick start
 

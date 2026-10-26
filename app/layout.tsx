@@ -33,10 +33,6 @@ export default async function Layout({
         <a className="skip" href="#main">
           Skip to content
         </a>
-        <div className="topline">
-          Good accounting starts with a conversation.{" "}
-          <a href={`tel:${s.phone}`}>Let’s talk: {s.phone}</a>
-        </div>
         <header>
           <div className="wrap nav">
             <Link href="/" className="brand">
@@ -49,7 +45,7 @@ export default async function Layout({
               )}
               <span>
                 {s.businessName.replace(" Accounting", "")}
-                <small>ACCOUNTING · PERSONAL BY NATURE</small>
+                <small>Accounting, with you in mind.</small>
               </span>
             </Link>
             <div className="navlinks">
