@@ -1,0 +1,6 @@
+node_modules
+.next
+.local-data
+package-lock.json
+playwright.local.config.ts
+test-results

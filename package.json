@@ -1,0 +1,46 @@
+{
+  "name": "chaim-accounting",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --hostname 0.0.0.0",
+    "build": "next build",
+    "start": "next start --hostname 0.0.0.0",
+    "test": "tsx --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "db:push": "node --env-file-if-exists=.env.local --import tsx scripts/db-push.ts",
+    "test:e2e": "playwright test",
+    "dev:db": "node scripts/dev-db.mjs",
+    "admin:setup": "node scripts/configure-admin.mjs",
+    "test:integration": "node --env-file-if-exists=.env.local --import tsx scripts/integration-test.ts",
+    "db:check": "node --env-file-if-exists=.env.local --import tsx scripts/db-check.ts"
+  },
+  "dependencies": {
+    "@fontsource/dm-sans": "^5.3.0",
+    "@fontsource/manrope": "^5.3.0",
+    "drizzle-orm": "^0.45.4",
+    "jose": "^6.0.0",
+    "lucide-react": "^0.468.0",
+    "next": "^16.4.3",
+    "pg": "^8.23.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "recharts": "^3.10.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.23.1",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "embedded-postgres": "^18.4.0-beta.17",
+    "prettier": "^3.9.10",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  },
+  "type": "module",
+  "engines": {
+    "node": "24.x"
+  }
+}
