@@ -70,10 +70,9 @@ export default async function Page({
             <div className="split">
               <div className="prose">
                 <p>
-                  At {s.businessName}, we believe great accounting is about more
-                  than numbers. It’s about understanding your needs, answering
-                  your questions, and helping you make confident financial
-                  decisions.
+                  At {s.businessName}, we believe great accounting is more than
+                  numbers. It’s about understanding your needs, answering your
+                  questions, and helping you make confident financial decisions.
                 </p>
                 <p>
                   Our approach is simple: provide dependable accounting
@@ -138,10 +137,6 @@ export default async function Page({
                 . Confirm the right fit with Chaim.
               </div>
             )}
-            <div className="notice">
-              Services below are proposed offerings until confirmed by the
-              owner. Please contact Chaim to confirm availability.
-            </div>
             <div className="services-directory">
               {[
                 ...active.map(([slug, title, , desc]) => ({

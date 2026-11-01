@@ -8,8 +8,8 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl()),
   title: {
-    default: "Chaim Gesteter Accounting | Personal service. Clear guidance.",
-    template: "%s | Chaim Gesteter Accounting",
+    default: "CG Accounting | Personal service. Clear guidance.",
+    template: "%s | CG Accounting",
   },
   description:
     "Personal attention, straightforward guidance, and fair pricing. Talk with Chaim Gesteter about your accounting needs.",
@@ -44,7 +44,7 @@ export default async function Layout({
                 </span>
               )}
               <span>
-                {s.businessName.replace(" Accounting", "")}
+                {s.businessName}
                 <small>Accounting, with you in mind.</small>
               </span>
             </Link>
@@ -64,7 +64,6 @@ export default async function Layout({
                   {[
                     ...links,
                     ["Pricing", "/pricing"],
-                    ["FAQ", "/faq"],
                     ["Book a Consultation", "/booking"],
                   ].map(([t, h]) => (
                     <Link href={h} key={h}>
@@ -125,7 +124,6 @@ export default async function Layout({
                 <b>A little clarity</b>
                 <Link href="/calculators">Financial calculators</Link>
                 <Link href="/articles">Tips & insights</Link>
-                <Link href="/faq">Common questions</Link>
                 <Link href="/booking">Book an appointment</Link>
               </div>
               <div>

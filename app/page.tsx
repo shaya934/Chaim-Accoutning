@@ -161,9 +161,6 @@ export default async function Home() {
                 <div>
                   <h3>{title}</h3>
                   <p>{description}</p>
-                  {!s.confirmedServices.includes(slug) && (
-                    <small>Discuss availability with Chaim</small>
-                  )}
                 </div>
                 <span className="round-arrow">
                   <ArrowUpRight size={20} />

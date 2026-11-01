@@ -3,7 +3,7 @@ import { settings } from "@/lib/settings";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { PageHero, CTA } from "@/components/shared";
-import { services, calculators, faqs, serviceDetails } from "@/lib/content";
+import { services, calculators, serviceDetails } from "@/lib/content";
 import Calculator from "@/components/calculator";
 export const dynamic = "force-dynamic";
 export async function generateMetadata({
@@ -61,12 +61,6 @@ export default async function Detail({
         <div className="wrap split">
           <div className="prose">
             <p>{desc}</p>
-            {!s.confirmedServices.includes(slug) && (
-              <div className="notice">
-                Proposed service — contact Chaim to confirm that this service is
-                currently available.
-              </div>
-            )}
             <h2>Support that starts with you.</h2>
             <p>
               Every financial situation is different. A conversation about your
@@ -89,13 +83,6 @@ export default async function Detail({
               <li>Relevant deadlines, responsibilities, and next steps.</li>
               <li>Scope and pricing before an engagement begins.</li>
             </ul>
-            <h2>Common questions</h2>
-            {[faqs[3], faqs[1], faqs[9]].map(([q, a]) => (
-              <details key={q}>
-                <summary>{q}</summary>
-                <p>{a}</p>
-              </details>
-            ))}
             <p>
               No specific tax savings or financial outcomes are promised. Advice
               depends on your facts and applicable rules.

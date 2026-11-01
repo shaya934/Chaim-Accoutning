@@ -12,7 +12,16 @@ export function mergeSettings(saved: Partial<Settings> | null): Settings {
           ),
           ...savedArticles,
         ];
-  return { ...defaults, ...saved, articles, contentVersion: 2 };
+  return {
+    ...defaults,
+    ...saved,
+    businessName:
+      !saved.businessName || saved.businessName === "Chaim Gesteter Accounting"
+        ? defaults.businessName
+        : saved.businessName,
+    articles,
+    contentVersion: 2,
+  };
 }
 export async function settings(): Promise<Settings> {
   if (!configured()) return defaults;

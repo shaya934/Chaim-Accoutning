@@ -30,18 +30,6 @@ export const services = [
     "Think ahead with confidence.",
     "Discuss estimated payments, changing circumstances, and potential tax obligations.",
   ],
-  [
-    "payroll-assistance",
-    "Payroll Assistance",
-    "Make room for your people.",
-    "Organize payroll records and coordinate questions with your payroll provider.",
-  ],
-  [
-    "business-accounting-advisory",
-    "Business Accounting Advisory",
-    "Practical guidance for your next step.",
-    "Explore budgets, profitability, cash flow, and the financial side of business decisions.",
-  ],
 ];
 export const calculators = [
   [
@@ -77,7 +65,7 @@ export const calculators = [
 ];
 export const defaults = {
   contentVersion: 2,
-  businessName: "Chaim Gesteter Accounting",
+  businessName: "CG Accounting",
   phone: "848-223-4073",
   email: "",
   address: "",
@@ -134,7 +122,7 @@ export const faqs = [
   ],
   [
     "Do you work with small businesses?",
-    "Small business accounting is a proposed service. Contact Chaim to confirm availability and discuss your needs.",
+    "We work with small businesses on their accounting needs. Contact Chaim to discuss the right support for your business.",
   ],
   [
     "How much do accounting services cost?",
@@ -217,26 +205,6 @@ export const serviceDetails: Record<
     {
       heading: "Understand estimated payments",
       text: "Discuss withholding, estimated payments, prior-year liability, and applicable payment-timing rules. Federal and state obligations may differ. Planning does not guarantee a particular tax outcome or replace a complete review of your facts.",
-    },
-  ],
-  "payroll-assistance": [
-    {
-      heading: "Keep payroll information organized",
-      text: "Reliable employee information, pay-period records, and payroll summaries can help a business coordinate with a payroll provider. Clarify who handles calculations, filings, deposits, and corrections before the service begins.",
-    },
-    {
-      heading: "Coordinate rather than guess",
-      text: "Worker classification, withholding, and state payroll requirements depend on applicable rules. Bring provider reports and specific questions to the conversation, and confirm which assistance Chaim offers before relying on a particular workflow.",
-    },
-  ],
-  "business-accounting-advisory": [
-    {
-      heading: "Make decisions with a clearer view",
-      text: "A budget can translate goals into expected income, costs, and cash needs. Comparing actual results with that plan helps identify questions about profitability, spending, or the timing of customer payments.",
-    },
-    {
-      heading: "Explore the next step",
-      text: "Discuss pricing assumptions, operating costs, cash reserves, and the financial implications of a proposed change. Advisory conversations use the records and assumptions available; they do not promise growth, investment performance, or financing approval.",
     },
   ],
 };
